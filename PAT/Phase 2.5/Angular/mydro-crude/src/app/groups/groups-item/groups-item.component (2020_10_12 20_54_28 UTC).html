@@ -1,0 +1,7 @@
+<span>
+  <input type="text" [(ngModel)]="group.name" [disabled]="!editable">
+</span>
+<button (click)="delete()">Delete</button>
+<button *ngIf="!editable" (click)="toggleEdits()">Edit</button>
+<button *ngIf="editable" (click)="saveEdits()">Save</button>
+<button *ngIf="editable" (click)="discardEdits()">X</button>

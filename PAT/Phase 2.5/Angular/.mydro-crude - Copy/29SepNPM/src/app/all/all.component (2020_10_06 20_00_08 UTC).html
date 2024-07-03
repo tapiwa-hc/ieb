@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Group</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  <tr *ngFor="let notice of allNotices"
+  app-all-item
+  [notice]="notice"
+  [savePing]="savePing"></tr>
+</table>
+<button class="save" (click)="saveChanges()">
+  Save Changes
+</button>

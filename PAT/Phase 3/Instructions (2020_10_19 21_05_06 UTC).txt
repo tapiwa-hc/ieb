@@ -1,0 +1,26 @@
+To Preview/Run: (please exclude wrapping quotes from commands)
+1) https://riptutorial.com/mysql/example/1964/restoring-a-backup-of-a-database-or-table
+	b) create a database named 'pat_sandbox'
+	a) Restore mysqldump using this guide and 'dump.sql'
+
+2) Change strings where indicated in 'mysql-api\server\db\index.js' (near top of file) and save
+
+3) Ensure you are connected to the internet
+
+4) https://angular.io/guide/setup-local
+	a) Follow this guide up to and including the "Install the Angular CLI" step
+
+5) Open a terminal from folder 'mysql-api'
+	a) run " npm install "
+	b) run " node server/server.js "
+
+6) Open a terminal from folder 'mydro-crude'
+	a) run " npm install " (might take a while)
+	a) run " npm install --global lite-server "
+	b) run " ng build --watch "
+
+7) Open another terminal from folder 'mydro-crude'
+	a) run " lite-server --baseDir="dist/mydro-crude" "
+
+
+

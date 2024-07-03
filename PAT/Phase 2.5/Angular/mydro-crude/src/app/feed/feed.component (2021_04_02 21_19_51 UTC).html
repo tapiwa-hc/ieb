@@ -1,0 +1,126 @@
+<mat-sidenav-container>
+  <!-- <div
+    class="sidebar"
+    id="mySidebar"
+    *ngIf="web"
+    (window:resize)="onResize($event)"
+  > -->
+  <mat-sidenav #sidenav fixedInViewport [fixedTopGap]="navHeight">
+    <div [class.d-none]="editableSubs" class="px-2">
+      <h2
+        (click)="sidenav.close()"
+        matTooltip="Close Sidebar"
+        [matTooltipShowDelay]="500"
+      >
+        Filter
+      </h2>
+      <button
+        mat-button
+        style="height: 0 !important; position: absolute !important"
+      >
+        <!-- 'absorbs' the auto-focus behavior -->
+      </button>
+      <button
+        mat-stroked-button
+        class="side-btn float-right"
+        (click)="clearFilters()"
+      >
+        Clear
+      </button>
+      <button
+        mat-stroked-button
+        class="side-btn float-right"
+        (click)="filterFeed()"
+      >
+        Apply
+      </button>
+      <br />
+      <hr />
+      <h2>Date</h2>
+      <div class="indent">
+        <mat-form-field appearance="fill">
+          <mat-label>From (Optional)</mat-label>
+          <input type="date" matInput #dateFrom="ngModel" ngModel />
+          <mat-error>Invalid input</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Until (Optional)</mat-label>
+          <input type="date" matInput #dateTill="ngModel" ngModel />
+        </mat-form-field>
+        <mat-error>Invalid input</mat-error>
+      </div>
+
+      <h2>
+        My Subscriptions
+        <button mat-icon-button *ngIf="web" (click)="editSubs()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </h2>
+      <div class="indent">
+        <mat-selection-list [(ngModel)]="subsFilter">
+          <mat-list-option
+            *ngFor="let sub of subs"
+            checkboxPosition="before"
+            color="primary"
+            [value]="sub.id"
+          >
+            {{ sub.name }}
+          </mat-list-option>
+        </mat-selection-list>
+      </div>
+    </div>
+
+    <div *ngIf="editableSubs && web" class="px-2">
+      <h2>
+        My Subscriptions<button mat-icon-button (click)="saveSubs()">
+          <mat-icon>save</mat-icon></button
+        ><button mat-icon-button (click)="cancelSubEdit()">
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </h2>
+      <div class="indent">
+        <ul>
+          <li *ngFor="let sub of subs">
+            <mat-checkbox
+              [checked]="true"
+              (change)="updateUnsub($event, sub.id)"
+            >
+              {{ sub.name }}
+            </mat-checkbox>
+          </li>
+        </ul>
+
+        <ul>
+          <li *ngFor="let sub of otherGroups">
+            <mat-checkbox (change)="updateSub($event, sub.id)">
+              {{ sub.name }}
+            </mat-checkbox>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- </div> -->
+  </mat-sidenav>
+
+  <button
+    mat-raised-button
+    id="toggleSB"
+    (click)="sidenav.toggle()"
+    (window:resize)="onResize($event)"
+    matTooltip="Open Sidebar"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="container content">
+    <div class="col-sm-8 mx-auto py-4 rounded-sm">
+      <div
+        *ngFor="let section of filteredFeed"
+        class="section"
+        app-feed-item
+        [sectionName]="sectionInfo[section.section - 1].name"
+        [notices]="section.notices"
+      ></div>
+    </div>
+  </div>
+</mat-sidenav-container>

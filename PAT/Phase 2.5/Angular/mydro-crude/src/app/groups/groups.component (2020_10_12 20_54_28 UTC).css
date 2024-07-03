@@ -1,0 +1,96 @@
+.list {
+  padding: 2em;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  margin: 1em;
+  border-bottom: 1px dotted black;
+}
+/* .form #showNewForm {
+  position:relative;
+  float: right;
+} */
+/* TODO: Conditional class */
+div.form {
+  width: 50px;
+
+  /* margin:auto; */
+  background-color: var(--navy-1);
+  /* position: fixed; */
+  bottom: 2em;
+  right: 33%;
+  padding: 5px;
+}
+button {
+  transition: transform 0.5s;
+}
+button.fab-rotate {
+  transform: rotate(-45deg);
+}
+.fab {
+  position: fixed;
+  bottom: 2em;
+  right: 33%;
+  background-color: var(--navy-1);
+  transform: rotate(0deg);
+}
+button[type=submit] {
+  color: white;
+}
+input {
+  color: white;
+}
+.mat-option {
+  background: var(--navy-1);
+  color: white;
+}
+.mat-option:hover {
+  background: var(--navy-2);
+}
+
+::ng-deep .mat-form-field .mat-input-element {
+  color: rgba(255, 255, 255, 0.8);
+}
+::ng-deep .mat-form-field .mat-form-field-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+::ng-deep .mat-form-field .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+::ng-deep .mat-form-field .mat-form-field-ripple {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+::ng-deep .mat-form-field .mat-form-field-required-marker {
+  color: rgba(255, 255, 255, 0.8);
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #fff;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #fff;
+}
+::ng-deep .mat-form-field.mat-focused .mat-form-field-required-marker {
+  color: #fff;
+}
+::ng-deep .mat-form-field.mat-focused .mat-input-element {
+  color: #fff;
+}
+div.form-open {
+  width: 450px;
+  /* margin:auto; */
+  margin-left: -225px;
+  right: 50%;
+  left: 50%;
+}
+/* select, input {
+  margin-left: 2px;
+  margin-right: 2px;
+} */
+
+h3 {
+  font-family: 'Sorts Mill Goudy';
+  color: var(--red-2);
+  font-size: 20pt;
+}

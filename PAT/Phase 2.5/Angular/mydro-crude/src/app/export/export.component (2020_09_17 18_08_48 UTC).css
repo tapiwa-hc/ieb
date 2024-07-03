@@ -1,0 +1,36 @@
+/* TODO: Print stylesheet */
+.printout {
+  width: 100%;
+}
+.printout *, .printout {
+  font-family: 'Times New Roman', Times, serif;
+}
+.printout table {
+  width: 50%;
+  border: 1px solid black;
+  margin-bottom: 2em;
+  font-family:'Times New Roman', Times, serif;
+}
+.printout th, .printout tr, .printout td {
+  font-family: 'Times New Roman', Times, serif;
+}
+.printout th {
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-size: 1.2em;
+}
+.printout td{
+  padding: 0.5em;
+  vertical-align: top;
+  font-family: 'Times New Roman', Times, serif;
+}
+.printout span {
+  font-family: 'Times New Roman', Times, serif;
+}
+.printout td:first-child {
+  border-right: 1px solid black;
+  width: 2em;
+}
+.printout p {
+  white-space: nowrap;
+}

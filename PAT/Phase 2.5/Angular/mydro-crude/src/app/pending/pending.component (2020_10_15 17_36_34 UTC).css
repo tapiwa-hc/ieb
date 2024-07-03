@@ -1,0 +1,40 @@
+.pending {
+  width: 100%;
+  margin: auto;
+  list-style-type: none;
+  padding: 2em;
+  background-color: white;
+}
+.save {
+  position: fixed;
+  bottom: 1.5em;
+  right: 2em;
+}
+.save button {
+  background-color: var(--navy-1);
+  color: white;
+}
+.mat-table * {
+  padding: 0 2em;
+}
+thead {
+  background-color: var(--table-head);
+}
+th {
+  position: sticky;
+  top: 0;
+}
+.th-date {
+  max-width: 8%;
+}
+.th-group,
+.th-title {
+  max-width: 12%;
+}
+.th-descr {
+  max-width: 50%;
+}
+.th-user,
+.th-approve {
+  max-width: 10%;
+}

@@ -1,0 +1,34 @@
+<td>{{notice.display_date | date:'d MMM'}}</td>
+<td>{{notice.grouping_name}}</td>
+<ng-container *ngIf="rights >= 2">
+<td title="Double-Click to Edit" (dblclick)="allowTitleEdits()">
+  <textarea cdkTextareaAutosize [(ngModel)]="notice.title" [disabled]="!editableTitle" ></textarea>
+  <div *ngIf="editableTitle">
+    <button mat-raised-button class="keep" (click)="keepTitle()">
+      {{ (rights >= 3) ? 'Keep': 'Request'}}
+    </button>
+    <button mat-raised-button class="discard" (click)="discardTitle()">
+      Discard
+    </button>
+  </div>
+</td>
+<td title="Double-Click to Edit" (dblclick)="allowDescrEdits()" *ngIf="rights >= 2">
+  <textarea cdkTextareaAutosize [(ngModel)]="notice.description" [disabled]="!editableDescr"></textarea>
+  <div *ngIf="editableDescr">
+    <button mat-raised-button class="keep" (click)="keepDescr()">
+      {{(rights >= 3) ? 'Keep': 'Request'}}
+    </button>
+    <button mat-raised-button class="discard" (click)="discardDescr()">
+      Discard
+    </button>
+    </div>
+</td>
+</ng-container>
+<ng-container *ngIf="rights < 2">
+  <td>{{notice.title}}</td>
+  <td>{{notice.description}}</td>
+</ng-container>
+<!-- <td>HI</td>
+<td>LO</td>
+<td>OL</td>
+<td>IH</td> -->

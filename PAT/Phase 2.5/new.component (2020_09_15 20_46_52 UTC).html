@@ -1,0 +1,101 @@
+<!-- <form>
+  <mat-form-field>
+    <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl"/>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option"> {{option}} </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+<!-- <mat-form-field>
+  <input type="date" matInput> -->
+  <!-- <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #myDatePicker></mat-datepicker> -->
+<!-- </mat-form-field> -->
+<div class="container-fluid">
+  <h2>Registration form</h2>
+  {{registrationForm.value | json}}
+  <br>
+  <br>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" type="text">
+        <!-- <ng-container *ngIf="username.invalid && username.touched"> -->
+          <mat-hint *ngIf="username.errors?.required" class="text-danger">Username is required</mat-hint>
+          <mat-hint *ngIf="username.errors?.minlength" class="text-danger">Username must be at least 3 characters</mat-hint>
+          <mat-hint *ngIf="username.errors?.forbiddenName" class="text-danger">'{{username.errors?.forbiddenName.value}}' Username not allowed</mat-hint>
+        <!-- </ng-container>                                       -->
+      </mat-form-field>
+                                <!-- <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username is required</small> -->
+    </div>
+
+    <div class="form-check-mb-3">
+             <!-- <input type="checkbox" class="form-check-input" formControlName="subscribe"> -->
+        <mat-checkbox formControlName="subscribe">
+          Send me promotional offers
+        </mat-checkbox>
+        <!-- <label class="form-check-label">
+          Send me promotional Offers
+        </label> -->
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput [class.is-invalid]="email.invalid && email.dirty" type="text" formControlName="email">
+        <mat-hint class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</mat-hint>
+      </mat-form-field>
+      <button mat-mini-fab type="button" class="btn btn-secondary btn-sm m-2" (click)="addAlternateEmail()">+</button>
+      <div formArrayName="alternateEmails" *ngFor="let email of alternateEmails.controls; let i = index">
+        <mat-form-field>
+          <mat-label>Alternate Email {{i + 1}}</mat-label>
+          <input matInput type="text" [formControlName]="i">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password">
+      </mat-form-field>
+    </div>
+    
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput formControlName="confirmPassword" type="password">
+        <mat-hint class ='text-danger' *ngIf="registrationForm.errors?.misMatch">Passwords do not match</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div formGroupName="address">
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" type="text">
+        </mat-form-field>
+      </div>
+      
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>State</mat-label>
+          <input matInput formControlName="state" type="text">
+        </mat-form-field>
+      </div>
+
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Postal Code</mat-label>
+          <input matInput formControlName="postalCode" type="text">
+        </mat-form-field>
+      </div>
+
+    </div>
+    <button mat-raised-button color="primary" type="submit">Register</button>
+    <button mat-raised-button class="mx-1" (click)="loadApiData()" type="button">Load API Data</button>
+  </form>
+
+</div>

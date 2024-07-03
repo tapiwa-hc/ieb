@@ -1,0 +1,34 @@
+<div class="container">
+  <table class="pending table rounded-sm">
+    <thead class="rounded-sm">
+      <th class="th-date">Date</th>
+      <th class="th-group">Group</th>
+      <th class="th-title">Title</th>
+      <th class="th-descr">Description</th>
+      <th class="th-user">User</th>
+      <th class="th-approve">Approve?</th>
+    </thead>
+    <tr *ngFor="let notice of pendingNotices" 
+      app-pending-item  
+      [notice]="notice"
+      (markedForApproval)="markForApproval($event)"
+      (markedForDenial)="markForDenial($event)"
+      [savePing]="savePing"></tr>
+  </table>
+  <div class="save">
+  <button mat-raised-button class="keep" (click)="saveChanges()">
+    Save Changes
+  </button>
+  </div>
+  <!-- TODO: Buy Calendah -->
+</div>
+
+
+<!-- <div style="margin: 2em" style="color:white">
+  <ul> Approval
+    <li *ngFor="let id of idsForApproval">{{id}}</li>
+  </ul>
+  <ul> Denial
+    <li *ngFor="let id of idsForDenial">{{id}}</li>
+  </ul>
+</div> -->

@@ -1,0 +1,26 @@
+@startuml Login Form
+|U|
+|F|
+|B|
+
+|F|
+start
+:'Login' page|
+while ("Username" or "Password" fields) is (invalid)
+  :disable 'login' button;
+  |U|
+  :enter credentials;
+endwhile (valid)
+|U|
+:click 'login' button;
+|B|
+if (credentials) then (invalid)
+  |F|
+  :Invalid Credentials/Error formatting;
+  end
+endif  
+  |F|
+  :'Home' page|
+  stop
+  
+@enduml

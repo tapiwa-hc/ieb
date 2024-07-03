@@ -1,0 +1,26 @@
+<button
+  mat-button
+  class="my-2"
+  (click)="toggleCollapse()"
+  matTooltip="Open/Close Section"
+  matTooltipPosition="after"
+>
+  {{ sectionName }}
+  <mat-icon class="expand-neutral" [class.expand-rotate]="collapsed"
+    >expand_more</mat-icon
+  >
+</button>
+
+<div>
+  <mat-accordion [class.d-none]="collapsed" *ngFor="let notice of notices">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header collapsedHeight="4em">
+        <mat-panel-title>{{ notice.title }}</mat-panel-title>
+        <mat-panel-description>{{
+          notice.display_date | date: "EEEE d MMM"
+        }}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <span [innerHTML]="notice.description | marked"></span>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

@@ -1,0 +1,28 @@
+<table class="pending">
+  <tr>
+    <th>Date</th>
+    <th>Group</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>User</th>
+    <th>Approve?</th>
+  </tr>
+  <tr *ngFor="let notice of pendingNotices" 
+    app-pending-item  
+    [notice]="notice"
+    (markedForApproval)="markForApproval($event)"
+    (markedForDenial)="markForDenial($event)"
+    [savePing]="savePing"></tr>
+</table>
+<button class="save" (click)="saveChanges()">
+Save Changes
+</button>
+
+<!-- <div style="margin: 2em">
+  <ul> Approval
+    <li *ngFor="let id of idsForApproval">{{id}}</li>
+  </ul>
+  <ul> Denial
+    <li *ngFor="let id of idsForDenial">{{id}}</li>
+  </ul>
+</div> -->

@@ -1,0 +1,31 @@
+<!-- <div class="card">
+  <h1>{{notice.title}}</h1>
+  <h3>{{notice.display_date | date:'EEEE d MMM'}}</h3>
+  <span [innerHTML]="notice.description | marked"></span>
+  <mat-icon class="expand">expand_more</mat-icon>
+</div> -->
+<!-- <mat-card hover-class="mat-elevation-z3" (click)="toggle()" [class.focused]="focused" class="module">
+  <mat-card-title>{{notice.title}}</mat-card-title>
+  <mat-card-subtitle>{{notice.display_date | date:'EEEE d MMM'}}</mat-card-subtitle>
+  <mat-card-content [class.overflow]="!focused"><span [innerHTML]="notice.description | marked"  ></span></mat-card-content>
+  <mat-card-actions>
+    <mat-icon [id]="notice.id">expand_more</mat-icon>
+  </mat-card-actions>
+</mat-card> -->
+
+  <!-- <div ellipsis>{{notice.description}}</div> -->
+
+  <button mat-button class='my-2' (click)="toggleCollapse()">{{sectionName}}  <mat-icon class="expand-neutral" [class.expand-rotate]="collapsed">expand_more</mat-icon></button>
+
+  <!-- <app-feed-item *ngFor="let notice of section.notices" [notice]="notice"></app-feed-item> -->
+<div>
+
+  <mat-accordion [class.d-none]="collapsed">
+    <mat-expansion-panel *ngFor="let notice of notices">
+      <mat-expansion-panel-header collapsedHeight="4em">
+        <mat-panel-title>{{notice.title}}</mat-panel-title>
+        <mat-panel-description>{{notice.display_date | date:'EEEE d MMM'}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <span [innerHTML]="notice.description | marked"  ></span>
+    </mat-expansion-panel>
+  </mat-accordion>

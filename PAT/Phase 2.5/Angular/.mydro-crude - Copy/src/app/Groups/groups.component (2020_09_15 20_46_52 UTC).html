@@ -1,0 +1,36 @@
+<div class="list">
+  <ng-container *ngFor="let i of groupList">
+    <h3>{{sectionInfo[i.section - 1].name}}</h3>
+    <ul>
+      <li *ngFor="let group of i.groups" app-groups-item [group]="group" (deleted)="removeFromList($event)">
+        <!-- <li *ngFor="let group of i.groups">
+      <app-r-groups-item></app-r-groups-item> -->
+      </li>
+    </ul>
+  </ng-container>
+</div>
+
+<div [class.form-open]="formVisible" [class.form-closed]="!formVisible" class="form">
+  <button *ngIf="!formVisible" id="showNewForm" (click)="toggleFormVisibility()">+</button>
+  <div *ngIf="formVisible">
+    <!-- TODO: Wire up form -->
+    <button id="showNewForm" (click)="toggleFormVisibility();clearForm()">x</button>
+    <form #newForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="form-field">
+        <select (change)="validateSection(section.value)" (blur)="validateSection(section.value)" name="section" #section="ngModel" [(ngModel)]="formModel.section" required>
+          <option value="0">Section</option>
+          <option *ngFor="let section of sectionInfo" [value]="section.id">{{ section.name }}</option>
+        </select>
+        <small *ngIf="(section.invalid || sectionHasError) && section.touched">Please choose a section</small>
+      </div>
+      <!-- <br> -->
+      <div class="form-field">
+        <input name="name" #name="ngModel" [(ngModel)]="formModel.name" placeholder="Name" required maxlength="50">
+        <small *ngIf="name.invalid && name.touched">Please provide a name</small>
+      </div>
+      <button type="submit" [disabled]="newForm.form.invalid || sectionHasError">Submit</button>
+    </form>
+    {{newForm.value | json}} {{newForm.form.valid}}
+  </div>
+</div>

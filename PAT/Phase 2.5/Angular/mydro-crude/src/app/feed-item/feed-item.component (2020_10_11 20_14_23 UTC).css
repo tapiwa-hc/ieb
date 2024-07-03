@@ -1,0 +1,55 @@
+/* .card {
+  border: 1px solid black;
+  margin: 2em 0em;
+  padding: 1em;
+  overflow: auto;
+  min-height: 5px;
+  width: 100%;
+  transition: 0.5s;
+} */
+mat-card {
+  margin: 2em 0em;
+  padding: 1em;
+  transition: 0.5s;
+  width: 100%;
+}
+
+mat-card span {
+  max-height: 2em;
+}
+
+.card:hover, mat-card:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+
+mat-icon {
+  transition: transform 0.5s;
+}
+.overflow {
+  word-break: break-word;
+  max-height: 1rem;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1rem;
+  display: -webkit-box;
+}
+
+.upsidedown {
+  transform: rotate(-180deg);
+  transition: transform 1s;
+}
+
+.module p {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 1.8em;
+  line-height: 1.8em;
+}
+

@@ -1,0 +1,19 @@
+________________________
+			|
+ADMINISTRATOR LOGIN: 	|
+			|
+Username: admin		|
+Password: admin		|
+________________________|
+			|
+HEAD OF NETBALL LOGIN:	|
+			|
+Username: norma		|
+Password: abc@123	|
+________________________|
+			|
+COACH LOGIN: 		|
+			|
+Username: coach		|
+Password: 12345		|
+________________________|

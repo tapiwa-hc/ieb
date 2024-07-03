@@ -1,0 +1,20 @@
+mat-form-field {
+  width: 100%;
+}
+textarea {
+  overflow: hidden !important;
+}
+mat-error {
+  display: none;
+}
+mat-form-field mat-error:first-child {
+  display: block;
+}
+form > button {
+  background: var(--navy-1);
+  color: white;
+}
+form > button:disabled {
+  background: var(--grey-a5);
+  color: var(--grey-7f);
+}

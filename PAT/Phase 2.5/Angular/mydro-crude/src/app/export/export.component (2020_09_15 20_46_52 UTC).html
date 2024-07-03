@@ -1,0 +1,30 @@
+<form #exportForm="ngForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="date">Date:</label>
+    <mat-form-field style="width: 50%" appearance="fill">
+
+      <input matInput type="date" name="date" [(ngModel)]="exportModel.date" [disabled]="exportModel.today" required>
+    </mat-form-field>
+      <br>
+    <mat-checkbox [(ngModel)]="exportModel.today" name="today" (click)="today()">Today</mat-checkbox>
+  </div>
+  <div>
+
+    <label>Sections:</label>
+    <mat-form-field style="width: 50%" appearance="fill">
+      <mat-select [(ngModel)]="exportModel.sections" name="sections" [disabled]="exportModel.all" multiple required>
+        <mat-option *ngFor="let section of sectionInfo" [value]="section.id">{{section.name}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="false">
+        This field is required
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <mat-checkbox [(ngModel)]="exportModel.all" name="all" (click)="selectAllSections()">Select All</mat-checkbox>
+    <!-- TODO: Clear if #all deselected -->
+  </div>
+  <button mat-raised-button color="primary" type="submit" [disabled]="exportForm.invalid">Proceed</button>
+</form>
+{{exportForm.value | json}}
+<br>
+{{exportModel.sections.toString()}}

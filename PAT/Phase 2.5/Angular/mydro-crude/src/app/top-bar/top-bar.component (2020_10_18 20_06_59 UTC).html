@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-sm">
+  <a class="navbar-brand" routerLink="home">
+    <img
+      src="../../assets/images/logo-100.png"
+      alt="Michaelhouse Logo"
+      class="logo"
+    />
+  </a>
+  <span class="navbar-text mr-auto" [class.small-title]="mobile">
+    | {{ title }}
+  </span>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#collapsibleNavbar"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav" id="navlinks" *ngIf="web && isLoggedIn">
+      <li class="nav-item dropdown" *ngIf="rights >= 3">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbardrop"
+          data-toggle="dropdown"
+        >
+          Manage
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="pending">Pending Notices</a>
+          <a class="dropdown-item" routerLink="groups">Notice Groups</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown" *ngIf="rights >= 2">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbardrop"
+          data-toggle="dropdown"
+        >
+          Publish
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="new">New Notice</a>
+          <a class="dropdown-item" routerLink="export">Export to PDF</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbardrop"
+          data-toggle="dropdown"
+        >
+          View
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="feed">My Feed</a>
+          <a class="dropdown-item" routerLink="all">All Notices</a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" *ngIf="web && isLoggedIn">
+        <a class="nav-link" href="#" id="navbardrop" data-toggle="dropdown">
+          My Profile
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" routerLink="password">Change Password</a>
+        </div>
+      </li>
+      <li class="nav-item" *ngIf="!isLoggedIn">
+        <a class="nav-link" routerLink="login">Login</a>
+      </li>
+
+      <li class="nav-item dropdown" *ngIf="isLoggedIn">
+        <a class="nav-link" href="#" id="navbardrop" data-toggle="dropdown">
+          Logout
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" style="cursor: pointer" (click)="logout()"
+            >Confirm</a
+          >
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

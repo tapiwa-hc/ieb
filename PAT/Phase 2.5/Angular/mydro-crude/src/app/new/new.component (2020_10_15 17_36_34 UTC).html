@@ -1,0 +1,142 @@
+<div *ngIf="sectionInfo && groupList" class="container rounded-sm">
+  <form
+    #newForm="ngForm"
+    (ngSubmit)="submitForm()"
+    class="col-sm-6 mx-auto py-2"
+  >
+    <div class="card my-2 p-4 mat-elevation-z1">
+      <mat-form-field appearance="standard">
+        <mat-label>Display Date</mat-label>
+        <input
+          matInput
+          type="date"
+          [min]="today | date: 'yyyy-MM-dd'"
+          required
+          name="date"
+          #date="ngModel"
+          [(ngModel)]="formModel.display_date"
+          appAutofocus
+        />
+
+        <mat-hint class="text-danger" *ngIf="dateInPast && date.touched">
+          Date cannot be in the past
+        </mat-hint>
+        <mat-error *ngIf="date.errors?.required && date.touched">
+          Date is required
+        </mat-error>
+        <mat-error *ngIf="date.invalid && date.touched">
+          Invalid input
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="card my-2 p-4 mat-elevation-z1">
+      <mat-checkbox
+        name="specificGroup"
+        [(ngModel)]="specificGroup"
+        (click)="resetGroup()"
+      >
+        This notice belongs in a specific group
+      </mat-checkbox>
+
+      <mat-form-field appearance="standard" *ngIf="specificGroup">
+        <mat-label>Group</mat-label>
+        <mat-select required name="group" #group="ngModel" ngModel>
+          <mat-optgroup
+            *ngFor="let section of groupList"
+            [label]="sectionInfo[section.section - 1].name"
+          >
+            <mat-option *ngFor="let group of section.groups" [value]="group">
+              {{ group.name }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+        <mat-error *ngIf="group?.invalid && group.touched">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="standard" *ngIf="!specificGroup">
+        <mat-label>Section</mat-label>
+        <mat-select
+          required
+          name="group"
+          #group="ngModel"
+          [(ngModel)]="formModel.gID"
+        >
+          <mat-option
+            *ngFor="let section of sectionInfo"
+            [value]="-1 * section.id"
+          >
+            {{ section.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="group?.invalid && group.touched">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="card my-2 p-4 mat-elevation-z1">
+      <mat-form-field appearance="standard">
+        <mat-label
+          >Title<ng-container *ngIf="specificGroup">
+            (Optional)</ng-container
+          ></mat-label
+        >
+        <input
+          matInput
+          [required]="!specificGroup"
+          #title="ngModel"
+          name="title"
+          [(ngModel)]="formModel.title"
+          maxlength="100"
+        />
+        <mat-hint align="end">
+          {{ title?.value?.length || "0" }} / 100
+        </mat-hint>
+        <mat-error *ngIf="title?.invalid && title?.touched">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="card my-2 p-4 mat-elevation-z1">
+      <mat-form-field appearance="standard">
+        <mat-label>Description</mat-label>
+        <textarea
+          cdkTextareaAutosize
+          matInput
+          required
+          #description="ngModel"
+          name="description"
+          [(ngModel)]="formModel.description"
+          maxlength="1000"
+        ></textarea>
+        <mat-hint align="end">
+          {{ description?.value?.length || "0" }} / 1000
+        </mat-hint>
+        <mat-error *ngIf="description?.invalid && description?.touched">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- Tag Students Optional -->
+    <div class="card my-2 p-4 mat-elevation-z1">
+      <mat-form-field appearance="standard">
+        <mat-label>Tag Students (Optional)</mat-label>
+        <textarea matNativeControl #tags> </textarea>
+      </mat-form-field>
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="newForm.invalid || dateInPast"
+      class="w-100"
+    >
+      {{ rights >= 3 ? "Create" : "Request" }}
+    </button>
+  </form>
+</div>

@@ -1,0 +1,40 @@
+<div class="container">
+
+
+  <div class="list mx-auto col-sm-6 bg-white rounded-sm" *ngIf="groupList && sectionInfo">
+    <ng-container *ngFor="let i of groupList">
+      <h3>{{sectionInfo[i.section - 1].name}}</h3>
+      <ul>
+        <li *ngFor="let group of i.groups" app-groups-item [group]="group" (deleted)="removeFromList($event)">
+        </li>
+      </ul>
+    </ng-container>
+
+    
+  </div>
+</div>
+
+<div [class.form-open]="formVisible" [class.form-closed]="!formVisible" class="form container col-sm-6">
+  <button class="fab" mat-fab [class.fab-rotate]="formVisible" id="showNewForm" (click)="toggleFormVisibility()"><mat-icon>add</mat-icon></button>
+  <div *ngIf="formVisible">
+    <!-- <button id="showNewForm" (click)="toggleFormVisibility();clearForm()"><mat-icon>close</mat-icon></button> -->
+    <form #newForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+      
+      <mat-form-field>
+        <mat-label>Section</mat-label>
+        <mat-select required name="section" #section="ngModel" [(ngModel)]="formModel.section">
+          <mat-option *ngFor="let section of sectionInfo" [value]="section.id">{{ section.name }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="section.invalid && section.touched">Please choose a section</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput name="name" #name="ngModel" [(ngModel)]="formModel.name" required maxlength="50">
+        <mat-error *ngIf="name.invalid && name.touched">Please provide a name</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-button type="submit" [disabled]="newForm.form.invalid">Submit</button>
+        </form>
+        <!-- {{newForm.value | json}} {{newForm.form.valid}} -->
+      </div>
+  </div>

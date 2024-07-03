@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="login-form rounded-sm col-sm-4 p-0 mx-auto">
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit()"
+      class="mx-auto bg-white p-5"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          [(ngModel)]="formModel.username"
+          name="username"
+          required
+          appAutofocus
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [(ngModel)]="formModel.password"
+          name="password"
+          type="password"
+          required
+        />
+        <mat-hint class="text-danger" *ngIf="invalidCredentials"
+          >Credentials do not match. Try again</mat-hint
+        >
+      </mat-form-field>
+      <button mat-raised-button type="submit" [disabled]="loginForm.invalid">
+        Login
+      </button>
+    </form>
+  </div>
+</div>

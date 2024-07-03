@@ -1,0 +1,59 @@
+.printout * {
+  line-height: initial;
+}
+.printout {
+  padding-bottom: 2em;
+}
+.printout *,
+.printout {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 20pt;
+}
+.printout table {
+  border: 1px solid black;
+  margin-bottom: 2em;
+  font-family: "Times New Roman", Times, serif;
+}
+.printout th,
+.printout tr,
+.printout td {
+  font-family: "Times New Roman", Times, serif;
+}
+.printout th {
+  border-bottom: 1px solid black;
+  text-align: center;
+  font-size: 28pt;
+}
+.printout td {
+  vertical-align: top;
+  font-family: "Times New Roman", Times, serif;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+.printout span {
+  font-family: "Times New Roman", Times, serif;
+}
+.printout td:first-child {
+  border-right: 1px solid black;
+  width: 2em;
+}
+.printout p {
+  white-space: nowrap;
+  margin: 0 !important;
+}
+.printout h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 60pt;
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 0;
+}
+.printout h2 {
+  font-size: 32pt;
+  text-align: center;
+  margin-bottom: 1em;
+}
+table {
+  page-break-inside: avoid;
+}

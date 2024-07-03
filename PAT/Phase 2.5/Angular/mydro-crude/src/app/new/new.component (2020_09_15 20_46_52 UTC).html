@@ -1,0 +1,35 @@
+<form #chipsForm>
+  <mat-form-field class="example">
+    <mat-chip-list #tags [selectable]="selectable">
+      <mat-chip *ngFor="let student of taggedStudents"
+      [removable]="removable" (removed)="untag(student)">
+        {{student.firstname + " " + student.surname}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input [matChipInputFor]="tags"
+             (matChipInputTokenEnd)="tag($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</form>
+
+<div>{{students | json}}</div>
+---
+<div>{{taggedStudents | json}}</div>
+---
+<div>{{chipsForm.value | json}}</div>
+
+
+<!-- <mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New fruit..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field> -->

@@ -1,0 +1,44 @@
+@startuml Home
+
+start
+:'Home' page|
+split
+  :Click 'Manage' container<
+  :Dropdown;
+  split
+    :Click 'Pending Notices'<
+    :'Pending' page|
+    stop
+  split again
+    :Click 'Notice Groups'<
+    :'Groups' page|
+    stop
+  end split
+split again
+  :Click 'Publish' container<
+  :Dropdown;
+  split
+    :Click 'New Notice'<
+    :'New' page|
+    stop
+  split again
+    :Click 'Export to PDF'<
+    :'Export' page|
+    stop
+  end split
+split again
+  :Click 'View' container<
+  :Dropdown;
+  split
+    :Click 'All Notices'<
+    :'All' page|
+    stop
+  split again
+    :Click 'My Feed'<
+    :'My Feed' page|
+    stop
+  end split
+end split
+
+
+@enduml

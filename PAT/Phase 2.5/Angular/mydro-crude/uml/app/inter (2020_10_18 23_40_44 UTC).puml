@@ -1,0 +1,70 @@
+@startuml
+class NoticeGroup {
+    +id: number
+    +name: string
+}
+interface GroupList {
+    +section: number
+    +groups: NoticeGroup[]
+}
+class NewGroup {
+    +section: number
+    +name: string
+}
+interface primaryAbstract {
+    +title: string
+    +description: string
+}
+interface secondaryAbstract extends primaryAbstract {
+    +display_date: string
+}
+interface tertiaryAbstract extends secondaryAbstract {
+    +id: number
+}
+interface PrintNotice extends primaryAbstract
+class NewNotice implements secondaryAbstract {
+    +uID: number
+    +display_date: string
+    +gID: number
+    +title: string
+    +description: string
+    +tags?: string
+}
+interface FeedNotice extends secondaryAbstract {
+    +grouping_id: number
+}
+interface TabularNotice extends tertiaryAbstract {
+    +grouping_name: string
+}
+interface PendingNotice extends TabularNotice {
+    +user: string
+}
+interface AllNotice extends TabularNotice {
+    +userID: number
+}
+interface Feed {
+    +section: number
+    +notices: FeedNotice[]
+}
+interface PrintList {
+    +section: number
+    +notices: PrintNotice[]
+}
+interface SectionInfo {
+    +id: number
+    +name: string
+}
+class User {
+    +username?: string
+    +password?: string
+    +id?: number
+    +rights?: string | number
+    +firstname?: string
+    +surname?: string
+}
+interface Student {
+    +id: number
+    +firstname: string
+    +surname: string
+}
+@enduml

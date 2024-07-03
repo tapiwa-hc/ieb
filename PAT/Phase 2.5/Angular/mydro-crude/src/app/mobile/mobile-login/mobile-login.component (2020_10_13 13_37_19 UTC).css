@@ -1,0 +1,21 @@
+mat-form-field {
+  width: 100%;
+}
+div.login-form {
+  height: 100%;
+  border: 5px solid rgba(255, 0, 0, 0.5);
+  margin-top: 3rem;
+  /* border-radius: 1em; */
+}
+.login-form button {
+  background: var(--navy-1);
+  color: white;
+}
+.login-form button:disabled {
+  background: var(--grey-a5);
+  color: var(--grey-7f);
+}
+.p-5 {
+  padding-top: 8rem !important;
+  padding-bottom: 8rem !important;
+}

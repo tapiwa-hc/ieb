@@ -1,0 +1,27 @@
+textarea {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 0.2em;
+  transition: border-color 0.5s;
+  padding: auto;
+}
+textarea:disabled {
+  color: black;
+  background-color: white;
+  border-color: #e0e0e0;
+}
+textarea:hover {
+  border-color: var(--blue-grey);
+}
+button {
+  color: white;
+}
+button.keep {
+  background-color: var(--navy-1);
+  margin-right: 0.2em;
+}
+button.discard {
+  background-color: #636267;
+  margin-left: 0.3em;
+}

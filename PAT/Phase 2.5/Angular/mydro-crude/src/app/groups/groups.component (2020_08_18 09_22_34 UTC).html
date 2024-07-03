@@ -1,0 +1,14 @@
+<div class="list">
+<ng-container *ngFor="let i of groupList">
+  <h3>{{sectionInfo[i.section - 1].name}}</h3>
+  <ul>
+    <li *ngFor="let group of i.groups"
+    app-groups-item
+    [group]="group">
+      <!-- {{group.name}}
+      <button>Delete</button>
+      <button>Edit</button> -->
+    </li>
+  </ul>
+</ng-container>
+</div>

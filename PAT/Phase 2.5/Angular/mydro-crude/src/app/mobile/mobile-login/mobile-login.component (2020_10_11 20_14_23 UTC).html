@@ -1,0 +1,8 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <mat-label>Admin No</mat-label>
+    <input matInput name="adminno" [(ngModel)]="adminNo" required maxlength=5 minlength=4>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button type="submit" color="primary" [disabled]="loginForm.invalid">View My Notices</button>
+</form>

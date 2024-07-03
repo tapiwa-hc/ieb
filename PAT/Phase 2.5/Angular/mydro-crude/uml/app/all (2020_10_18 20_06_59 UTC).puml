@@ -1,0 +1,461 @@
+@startuml
+class User {
+    +username?: string
+    +password?: string
+    +id?: number
+    +rights?: string | number
+    +firstname?: string
+    +surname?: string
+}
+interface Student {
+    +id: number
+    +firstname: string
+    +surname: string
+}
+class AuthService {
+    -_loginUrl: string
+    -_passwordUrl: string
+    -_mobileLoginUrl: string
+    -_user: User
+    -http: HttpClient
+    -router: Router
+    +login(user: User): Observable<any>
+    +mobileLogin(adminNo: number): Observable<any>
+    +changePassword(oldPass: any, newPass: any): Observable<Object>
+    +fetchDetails(): void
+    +logout(): void
+    +isLoggedIn: boolean
+    +hasDetails: boolean
+    +token: string
+    +rights: string | number
+    +userID: number
+}
+class AdminGuard implements CanActivate {
+    -authService: AuthService
+    -router: Router
+    -snackBar: MatSnackBar
+    +canActivate(): boolean
+}
+interface primaryAbstract {
+    +title: string
+    +description: string
+}
+interface secondaryAbstract extends primaryAbstract {
+    +display_date: string
+}
+interface tertiaryAbstract extends secondaryAbstract {
+    +id: number
+}
+interface printNotice extends primaryAbstract
+class NewNotice implements secondaryAbstract {
+    +uID: number
+    +display_date: string
+    +gID: number
+    +title: string
+    +description: string
+    +tags?: string
+}
+interface TabularNotice extends tertiaryAbstract {
+    +grouping_name: string
+}
+interface PendingNotice extends TabularNotice {
+    +user: string
+}
+interface AllNotice extends TabularNotice {
+    +userID: number
+}
+interface FeedNotice extends tertiaryAbstract {
+    +grouping_id: number
+}
+interface Feed {
+    +section: number
+    +notices: FeedNotice[]
+}
+interface printList {
+    +section: number
+    +notices: printNotice[]
+}
+class TableItemComponent implements OnInit {
+    +notice: any
+    +savePing: Subject<any>
+    +error: EventEmitter<any>
+    +editableTitle: boolean
+    +editableDescr: boolean
+    #initial: string[]
+    #edits: string[]
+    #noticeService: any
+    #auth: any
+    +ngOnInit(): void
+    #init(): void
+    +allowTitleEdits(): void
+    +allowDescrEdits(): void
+    +keepTitle(): void
+    +discardTitle(): void
+    +keepDescr(): void
+    +discardDescr(): void
+    #saveEdits(): void
+}
+class AllItemComponent extends TableItemComponent implements OnInit {
+    +notice: AllNotice
+    -_rights: string | number
+    +editable: boolean
+    +init(): void
+    +rights: string | number
+}
+class NoticeGroup {
+    +id: number
+    +name: string
+}
+interface GroupList {
+    +section: number
+    +groups: NoticeGroup[]
+}
+class NewGroup {
+    +section: number
+    +name: string
+}
+interface SectionInfo {
+    +id: number
+    +name: string
+}
+class NoticeService {
+    -dbUrl: string
+    -_sections: SectionInfo[]
+    -_students: Student[]
+    +getPending(): Observable<PendingNotice[]>
+    +updatePendingStatus(id: number, status: number): Observable<any>
+    +getGroups(): Observable<GroupList[]>
+    +editGroupName(id: number, name: string): Observable<any>
+    +deleteGroup(id: number, recursive: boolean): Observable<any>
+    +addGroup(group: NewGroup): Observable<any>
+    +getSections(): Observable<SectionInfo[]>
+    +editNotice(id: number, title: string, description: string): Observable<any>
+    +getStudents(): Observable<Student[]>
+    +newNotice(n: NewNotice): Observable<any>
+    +exportToPDF(date: any, sections: any): Observable<printList[]>
+    +getMyNotices(id: any): Observable<Feed[]>
+    +getMyNoticesMobile(): Observable<Feed[]>
+    +getSubs(id: any): Observable<NoticeGroup[]>
+    +addSubs(id: any, add: any): Observable<any>
+    +removeSubs(id: any, remove: any): Observable<any>
+    +getAll(): Observable<AllNotice[]>
+    -http: HttpClient
+    -router: Router
+    -snackBar: MatSnackBar
+    -handleError(operation?: string, result?: T): (error: any) => Observable<T>
+}
+class TableComponent implements OnInit {
+    #savePing: Subject<any>
+    #router: Router
+    #snackBar: MatSnackBar
+    #route: ActivatedRoute
+    #auth: AuthService
+    #noticeService: NoticeService
+    +ngOnInit(): void
+    #warn(message: any): void
+}
+class AllComponent extends TableComponent implements OnInit {
+    +allNotices: AllNotice[]
+    +ngOnInit(): void
+    +rights: string | number
+    -getAll(): void
+    +saveChanges(): Promise<void>
+}
+class AuthGuard implements CanActivate {
+    -authService: AuthService
+    -router: Router
+    -snackBar: MatSnackBar
+    +canActivate(): boolean
+}
+class DeviceService {
+    +web: boolean
+    +mobile: boolean
+}
+class DeviceGuard implements CanActivate {
+    -router: Router
+    -device: DeviceService
+    +canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean
+}
+class ExportComponent implements OnInit {
+    +exportModel: { date: string; sections: any[]; today: boolean; all: boolean; }
+    +ready: boolean
+    +sectionInfo: SectionInfo[]
+    +dailyNotices: printList[]
+    -noticeService: NoticeService
+    -route: ActivatedRoute
+    -snackBar: MatSnackBar
+    -getSectionInfo(): void
+    +ngOnInit(): void
+    +selectAllSections(): void
+    +today(): void
+    +onSubmit(): void
+}
+class FeedComponent implements OnInit {
+    +userID: any
+    +sectionInfo: SectionInfo[]
+    +feed: Feed[]
+    +filteredFeed: Feed[]
+    +subs: Subs[]
+    +otherGroups: Subs[]
+    +subCount: number
+    +editableSubs: boolean
+    +subsFilter: number[]
+    +subsToRemove: number[]
+    +subsToAdd: number[]
+    +web: boolean
+    +sbOpen: boolean
+    +navHeight: any
+    +dateFrom: NgModel
+    +dateTill: NgModel
+    -noticeService: NoticeService
+    -authService: AuthService
+    -route: ActivatedRoute
+    -device: DeviceService
+    -snackBar: MatSnackBar
+    +ngOnInit(): void
+    -getSectionInfo(): void
+    -getFeed(): void
+    -getSubs(): void
+    -compareGroups(a: Subs, b: Subs): 1 | -1 | 0
+    -setNavPosition(): void
+    +onResize(event: any): void
+    +toggleSB(): void
+    +openSB(): void
+    +closeSB(): void
+    +filterFeed(): void
+    +clearFilters(): void
+    +editSubs(): void
+    +saveSubs(): void
+    +updateUnsub(e: MatCheckboxChange, id: number): void
+    +updateSub(e: MatCheckboxChange, id: number): void
+    +cancelSubEdit(): void
+}
+class GroupsComponent implements OnInit {
+    +sectionInfo: SectionInfo[]
+    +groupList: GroupList[]
+    +newForm: NgForm
+    +formModel: NewGroup
+    +formVisible: boolean
+    -noticeService: NoticeService
+    -route: ActivatedRoute
+    -router: Router
+    -snackBar: MatSnackBar
+    +ngOnInit(): void
+    -getSections(): void
+    -getGroups(): void
+    +removeFromList(id: any): void
+    +toggleFormVisibility(): void
+    +clearForm(): void
+    +onSubmit(): void
+}
+class HomeComponent implements OnInit {
+    -_rights: string | number
+    -auth: AuthService
+    +ngOnInit(): void
+    +rights: string | number
+}
+class LoginComponent {
+    +formModel: User
+    +invalidCredentials: boolean
+    +lf: NgForm
+    -authService: AuthService
+    +onSubmit(): void
+}
+class MobileLoginComponent implements OnInit {
+    +adminNo: any
+    +invalidCredentials: boolean
+    +lf: any
+    -auth: AuthService
+    +ngOnInit(): void
+    +onSubmit(): void
+}
+class NewComponent implements OnInit, AfterViewInit {
+    -_rights: string | number
+    +userID: number
+    +removable: boolean
+    +selectable: boolean
+    +students: Student[]
+    +taggedStudents: Student[]
+    +tagify: any
+    +specificGroup: boolean
+    +sectionInfo: SectionInfo[]
+    +groupList: GroupList[]
+    -_dateInPast: boolean
+    +today: Date
+    +dateInPast: boolean
+    +formModel: NewNotice
+    +newForm: NgForm
+    +tags: ElementRef<any>
+    +group: MatSelect
+    +date: any
+    -noticeService: NoticeService
+    -auth: AuthService
+    -route: ActivatedRoute
+    -snackBar: MatSnackBar
+    +ngOnInit(): void
+    +ngAfterViewInit(): void
+    +rights: string | number
+    -getStudents(): void
+    -getSections(): void
+    -getGroups(): void
+    +resetGroup(): void
+    +submitForm(): void
+}
+class PasswordComponent implements OnInit {
+    +minPw: number
+    +formGroup: FormGroup
+    +invalidCredentials: boolean
+    -fb: FormBuilder
+    -authService: AuthService
+    -snackBar: MatSnackBar
+    -router: Router
+    +ngOnInit(): void
+    +oldPassword: AbstractControl
+    +newPassword: AbstractControl
+    +confirmNewPassword: AbstractControl
+    +onPasswordInput(): void
+    +onSubmit(): void
+}
+class PendingComponent extends TableComponent implements OnInit {
+    +pendingNotices: PendingNotice[]
+    +idsForApproval: number[]
+    +idsForDenial: number[]
+    +getPending(): void
+    +markForApproval(id: any): void
+    +markForDenial(id: any): void
+    -updateList(): void
+    +saveChanges(): Promise<void>
+    +ngOnInit(): void
+}
+class PupilGuard implements CanActivate {
+    -authService: AuthService
+    -router: Router
+    -snackBar: MatSnackBar
+    +canActivate(): boolean
+}
+class AllTableResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<AllNotice[]>
+}
+class FeedResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    -auth: AuthService
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Feed[]>
+}
+class GroupsResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<GroupList[]>
+}
+class PendingResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<PendingNotice[]>
+}
+class SectionsResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<SectionInfo[]>
+}
+class StudentsResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Student[]>
+}
+class SubsResolverService implements Resolve {
+    -ns: NoticeService
+    -router: Router
+    -auth: AuthService
+    +resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<NoticeGroup[]>
+}
+class StaffGuard implements CanActivate {
+    -authService: AuthService
+    -router: Router
+    -snackBar: MatSnackBar
+    +canActivate(): boolean
+}
+class AppRoutingModule
+class AppComponent implements OnInit {
+    +title: string
+    +showOverlay: boolean
+    -router: Router
+    -titleService: Title
+    -route: ActivatedRoute
+    +ngOnInit(): void
+    +navigationInterceptor(event: RouterEvent): void
+}
+class AutofocusDirective implements OnInit {
+    -matInput: MatInput
+    +ngOnInit(): void
+}
+class FeedItemComponent implements OnInit {
+    +focused: boolean
+    +showEllipsis: boolean
+    +collapsed: boolean
+    +notices: FeedNotice[]
+    +sectionName: string
+    +ngOnInit(): void
+    +toggleCollapse(): void
+}
+class GroupsDialogComponent implements OnInit {
+    +ngOnInit(): void
+}
+class GroupsItemComponent implements OnInit {
+    +group: any
+    +deleted: EventEmitter<number>
+    +editable: boolean
+    +initial: string
+    -noticeService: any
+    -dialog: MatDialog
+    -snackBar: MatSnackBar
+    +discardEdits(): void
+    +toggleEdits(): void
+    +saveEdits(): void
+    +delete(): void
+    +emitDelete(): void
+    +ngOnInit(): void
+}
+class MarkedPipe implements PipeTransform {
+    +transform(value: any): any
+}
+class MaterialModule
+interface DialogData {
+    +message: string
+}
+class PendingDialogComponent implements OnInit {
+    +data: DialogData
+    +ngOnInit(): void
+}
+class PendingItemComponent extends TableItemComponent implements OnInit {
+    +notice: PendingNotice
+    +markedForApproval: EventEmitter<number>
+    +markedForDenial: EventEmitter<number>
+    +markForApproval(id: any): void
+    +markForDenial(id: any): void
+}
+class PrintoutComponent implements OnInit {
+    +exportModel: any
+    +dailyNotices: printList[]
+    +sectionInfo: SectionInfo[]
+    -snackBar: MatSnackBar
+    +ngOnInit(): void
+}
+class TokenInterceptorService implements HttpInterceptor {
+    +intercept(req: any, next: any): any
+    -injector: Injector
+}
+class TopBarComponent implements OnInit {
+    +title: string
+    +web: boolean
+    +mobile: boolean
+    -auth: AuthService
+    -device: DeviceService
+    +ngOnInit(): void
+    +rights: string | number
+    +isLoggedIn: boolean
+    +logout(): void
+}
+class AppModule
+@enduml

@@ -1,0 +1,79 @@
+<div class="container content">
+  <div
+    class="list mx-auto col-sm-6 bg-white rounded-sm"
+    *ngIf="groupList && sectionInfo"
+  >
+    <ng-container *ngFor="let i of groupList">
+      <h3>{{ sectionInfo[i.section - 1].name }}</h3>
+      <ul>
+        <li
+          *ngFor="let group of i.groups"
+          app-groups-item
+          [group]="group"
+          (deleted)="removeFromList($event)"
+        ></li>
+      </ul>
+    </ng-container>
+  </div>
+</div>
+
+<div
+  [class.form-open]="formVisible"
+  class="form container col-sm-6 fixed-bottom rounded-lg"
+>
+  <button
+    class="fab"
+    mat-fab
+    [class.fab-rotate]="formVisible"
+    [class.form-open]="formVisible"
+    id="showNewForm"
+    (click)="toggleFormVisibility()"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+  <div>
+    <form #newForm="ngForm" (ngSubmit)="onSubmit()" novalidate class="p-2">
+      <mat-form-field>
+        <mat-label>Section</mat-label>
+        <mat-select
+          required
+          name="section"
+          #section="ngModel"
+          [(ngModel)]="formModel.section"
+        >
+          <mat-option
+            *ngFor="let section of sectionInfo"
+            [value]="section.id"
+            >{{ section.name }}</mat-option
+          >
+        </mat-select>
+        <mat-error *ngIf="section.invalid && section.touched"
+          >Please choose a section</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="formModel.name"
+          required
+          maxlength="50"
+        />
+        <mat-error *ngIf="name.invalid && name.touched"
+          >Please provide a name</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <button
+        mat-button
+        class="w-100"
+        type="submit"
+        [disabled]="newForm.form.invalid"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>

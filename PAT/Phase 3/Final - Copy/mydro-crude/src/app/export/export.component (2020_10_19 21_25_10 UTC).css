@@ -1,0 +1,15 @@
+div.export-form {
+  height: 100%;
+  border: 5px solid rgba(255, 0, 0, 0.5);
+}
+.export-form button {
+  background: var(--navy-1);
+  color: white;
+}
+.export-form button:disabled {
+  background: var(--grey-a5);
+  color: var(--grey-7f);
+}
+mat-form-field {
+  flex: initial;
+}

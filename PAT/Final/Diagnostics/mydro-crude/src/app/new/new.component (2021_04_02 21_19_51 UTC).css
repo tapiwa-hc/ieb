@@ -1,0 +1,14 @@
+mat-form-field {
+  width: 100%;
+}
+textarea {
+  overflow: hidden !important;
+}
+form > button {
+  background: var(--navy-1);
+  color: white;
+}
+form > button:disabled {
+  background: var(--grey-a5);
+  color: var(--grey-7f);
+}

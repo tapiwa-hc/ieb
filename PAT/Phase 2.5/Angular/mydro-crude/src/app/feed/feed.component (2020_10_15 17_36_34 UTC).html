@@ -1,0 +1,108 @@
+<div
+  class="sidebar"
+  id="mySidebar"
+  *ngIf="web"
+  (window:resize)="onResize($event)"
+>
+  <div [class.d-none]="editableSubs">
+    <h3>Filter</h3>
+    <button
+      mat-stroked-button
+      class="side-btn float-right"
+      (click)="clearFilters()"
+    >
+      Clear
+    </button>
+    <button
+      mat-stroked-button
+      class="side-btn float-right"
+      (click)="filterFeed()"
+    >
+      Apply
+    </button>
+    <hr />
+    <h2>Date</h2>
+    <div class="indent">
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput #dateFrom [matDatepicker]="pickerFrom" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerFrom"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput #dateTill [matDatepicker]="pickerTill" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerTill"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerTill></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <h2>
+      My Subscriptions
+      <button mat-icon-button (click)="editSubs()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </h2>
+    <div class="indent">
+      <mat-selection-list [(ngModel)]="subsFilter">
+        <mat-list-option
+          *ngFor="let sub of subs"
+          checkboxPosition="before"
+          color="primary"
+          [value]="sub.id"
+        >
+          {{ sub.name }}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
+
+  <div *ngIf="editableSubs">
+    <h2>
+      My Subscriptions<button mat-icon-button (click)="saveSubs()">
+        <mat-icon>save</mat-icon></button
+      ><button mat-icon-button (click)="cancelSubEdit()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </h2>
+    <div class="indent">
+      <ul>
+        <li *ngFor="let sub of subs">
+          <mat-checkbox [checked]="true" (change)="updateUnsub($event, sub.id)">
+            {{ sub.name }}
+          </mat-checkbox>
+        </li>
+      </ul>
+
+      <ul>
+        <li *ngFor="let sub of otherGroups">
+          <mat-checkbox (change)="updateSub($event, sub.id)">
+            {{ sub.name }}
+          </mat-checkbox>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<button mat-raised-button id="toggleSB" (click)="toggleSB()" *ngIf="web">
+  <mat-icon>menu</mat-icon>
+</button>
+
+<div class="container">
+  <div class="col-sm-8 mx-auto py-4 rounded-sm">
+    <div
+      *ngFor="let section of filteredFeed"
+      class="section"
+      app-feed-item
+      [sectionName]="sectionInfo[section.section - 1].name"
+      [notices]="section.notices"
+    ></div>
+  </div>
+</div>
+<hr />

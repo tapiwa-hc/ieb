@@ -1,0 +1,12 @@
+,Mock Data,,,,,,,Table Specifications,,,,,,
+,user_id,rights,first_name,surname,username,password,,#,field_name,data_type,Extra,,Notes,
+,1,1,Glennie,Murrish,gmurri,$2y$04$6A3wqS3XgAlmowlZMA6KPeqV41hnvnTsX75pqPZq4VOBlHNMlivWe,,1,user_id,10-bit integer,auto_increment,,,
+,2,0,Bone,Crocket,NULL,NULL,,2,rights,enum,,,0-Students; 1-Staff; 2-Admins,enum
+,3,0,Vivi,Canty,NULL,NULL,,3,first_name,40-character String,,,,
+,4,2,Reyna,Kidds,rkidds,$2y$04$UKV35By61WXQE/AQQnf9g.12weUKsgIL8..BpNu4iA.oXa0zb4Pf6,,4,surname,40-character String,,,,
+,5,1,Paxton,Braidley,pbraid,$2y$04$5uB.gSlymv1tgC3bdp17LuMgLI9BMxC6j6799luL705c5XRYhMZnq,,5,username,8-character String,2-character overlow,,NULL for Students; typically the first 3 letters from name and surname,
+,6,2,Candace,Peacher,cpeach,$2y$04$xMW419GLTG4U/rlaTnOekuWkPmnisPYKx1p19CSqWvnneA1AbUJAe,,6,password,62-character String,2-character overlow,,NULL for Students; bcrypt hash of password,
+,7,0,Jenine,Holdron,NULL,NULL,,,,,,,,
+,8,2,Alf,Roddie,aroddi,$2y$04$kYEUbIWwttO0Mz9xLoiDj.z0mL49s/isEvGfYZUzPEFH1/N1ERA0.,,,,,,,,
+,9,0,Silvano,Deegan,NULL,NULL,,,,,,,,
+,10,0,Twyla,Colrein,NULL,NULL,,,,,,,,

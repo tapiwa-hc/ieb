@@ -1,0 +1,33 @@
+<div class="container content">
+  <div class="login-form rounded-sm col-sm-4 p-0 mx-auto h">
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit()"
+      class="mx-auto bg-white p-5"
+    >
+      <mat-form-field appearance="outline">
+        <mat-label>Admin No</mat-label>
+        <input
+          matInput
+          name="adminno"
+          [(ngModel)]="adminNo"
+          required
+          maxlength="5"
+          minlength="4"
+        />
+        <mat-hint class="text-danger" *ngIf="invalidCredentials"
+          >Credentials do not match. Try again</mat-hint
+        >
+      </mat-form-field>
+      <br />
+      <button
+        mat-raised-button
+        type="submit"
+        class="w-100"
+        [disabled]="loginForm.invalid"
+      >
+        View My Notices
+      </button>
+    </form>
+  </div>
+</div>

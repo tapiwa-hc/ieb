@@ -1,0 +1,19 @@
+<div class="container">
+  <table class="all table rounded-sm">
+    <thead class="rounded-sm">
+      <th class="th-date">Date</th>
+      <th class="th-group">Group</th>
+      <th class="th-title">Title</th>
+      <th class="th-descr">Description</th>
+    </thead>
+    <tr *ngFor="let notice of allNotices"
+    app-all-item
+    [notice]="notice"
+    [savePing]="savePing"></tr>
+  </table>
+  <div class="save">
+    <button mat-raised-button class="keep" (click)="saveChanges()">
+      Save Changes
+    </button>
+  </div>
+</div>

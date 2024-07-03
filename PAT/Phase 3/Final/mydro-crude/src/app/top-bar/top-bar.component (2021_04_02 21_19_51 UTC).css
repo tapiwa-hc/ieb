@@ -1,0 +1,41 @@
+nav {
+  background-color: white;
+}
+.logo {
+  height: 10vh;
+  max-height: 64px;
+}
+a {
+  font-family: Garamond, "Sorts Mill Goudy";
+  font-size: 12pt;
+  color: var(--blue-grey);
+  font-weight: 600;
+}
+a.dropdown-item {
+  font-family: Roboto;
+  font-weight: normal;
+}
+span {
+  font-family: "Sorts Mill Goudy";
+  max-height: 64px;
+  font-size: 40pt;
+  color: var(--red-1);
+}
+mat-icon {
+  color: var(--red-1);
+}
+/* a > mat-icon {
+  color: inherit;
+} */
+#navlinks {
+  margin-left: 20px;
+}
+.small-title {
+  font-size: 5vh;
+}
+.dropdown-toggle::after {
+  margin-left: 0;
+}
+.nav-item {
+  cursor: pointer;
+}

@@ -1,0 +1,102 @@
+<!-- TODO: float labels -->
+<ng-container *ngIf="sectionInfo && groupList">
+<form #newForm="ngForm" (ngSubmit)="submitForm()">  
+  <!-- TODO: Cards -->
+  <mat-form-field appearance="fill">
+    <!-- Date Required -->
+    <!-- TODO: Format Date -->
+    <mat-label>Display Date</mat-label>
+    <input matInput [min]="today" required name="date" [(ngModel)]="formModel.display_date" [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  
+  <!-- Group Required, Two Types -->
+  <mat-checkbox name="specificGroup" [(ngModel)]="specificGroup" (click)="resetGroup()">This notice belongs in a specific group</mat-checkbox>
+
+  <mat-form-field appearance="fill" *ngIf="specificGroup">
+    <mat-label>Group</mat-label>
+    <mat-select required name="group" #group ngModel>
+        <mat-optgroup *ngFor="let section of groupList" [label]="sectionInfo[section.section - 1].name">
+          <mat-option *ngFor="let group of section.groups" [value]="group">{{group.name}}</mat-option>
+        </mat-optgroup>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" *ngIf="!specificGroup">
+    <mat-label>Section</mat-label>
+    <mat-select required name="group" #group [(ngModel)]="formModel.gID">
+        <mat-option *ngFor="let section of sectionInfo" [value]="-1*section.id">{{section.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Title Optional(title | group name)
+    Length from table -->
+  <mat-form-field appearance="fill">
+    <mat-label>Title<ng-container *ngIf="specificGroup"> (Optional)</ng-container></mat-label>
+    <input matInput [required]="!specificGroup" #title name="title" [(ngModel)]="formModel.title" maxlength="100">
+    <mat-hint align="end">{{title.value.length}} / 100</mat-hint>
+  </mat-form-field>
+    
+  <!-- Description Required
+  length from table -->
+  <mat-form-field appearance="fill">
+    <!-- TODO: markdown, dynamically resize -->
+    <mat-label>Description</mat-label>
+    <textarea matInput required #description name="description" [(ngModel)]="formModel.description" maxlength="1000"></textarea>
+    <mat-hint align="end">{{description.value.length}} / 1000</mat-hint>
+  </mat-form-field>
+
+
+  <!-- Tag Students Optional -->
+  <mat-form-field appearance="fill">
+    <mat-label>Tag Students (Optional)</mat-label>
+    <textarea matNativeControl #tags>
+    </textarea>
+    <!-- TODO (searchBy: admin no) -->
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="newForm.invalid">Request</button>
+  <!-- {{tags.value}} -->
+</form>
+<!-- {{formModel | json}}
+{{newForm.value | json}} -->
+
+
+<!-- <form #chipsForm>
+  <mat-form-field class="example">
+    <mat-chip-list #tags [selectable]="selectable">
+      <mat-chip *ngFor="let student of taggedStudents"
+      [removable]="removable" (removed)="untag(student)">
+        {{student.firstname + " " + student.surname}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input [matChipInputFor]="tags"
+             (matChipInputTokenEnd)="tag($event)">
+    </mat-chip-list>
+  </mat-form-field>
+</form>
+
+<div>{{students | json}}</div>
+---
+<div>{{taggedStudents | json}}</div>
+---
+<div>{{chipsForm.value | json}}</div>
+<tagify></tagify> -->
+
+
+<!-- <mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+             [removable]="removable" (removed)="remove(fruit)">
+      {{fruit.name}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="New fruit..."
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field> -->
+<!-- {{formModel | json}} -->
+</ng-container>

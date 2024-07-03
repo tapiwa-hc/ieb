@@ -1,0 +1,32 @@
+.card, .dropdown .card {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  font-size: 30pt;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+span.dropdown.card {
+  padding: 0;
+}
+.mat-icon {
+  margin: auto;
+}
+.card-body {
+  font-family: 'Sorts Mill Goudy';
+  font-variant: small-caps;
+  color: var(--red-1);
+}
+div.card {
+  margin: 0;
+}
+div.card:hover {
+  background-color: #eeeeee;
+}
+.card-footer {
+  color: var(--red-1);
+  background-color: inherit;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}

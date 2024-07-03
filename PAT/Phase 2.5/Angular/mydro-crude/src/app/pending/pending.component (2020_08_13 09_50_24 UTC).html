@@ -1,0 +1,34 @@
+<table class="pending">
+  <tr>
+    <th>Date</th>
+    <th>Group</th>
+    <th>Title</th>
+    <th>Description</th>
+    <th>User</th>
+    <th>Approve?</th>
+  </tr>
+  <tr *ngFor="let notice of pendingNotices">
+    <td title="Display Date">{{ notice.display_date }} </td>
+    <td>{{ notice.name }} </td>
+    <td>{{ notice.title }} </td>
+    <td>{{ notice.description }} </td>
+    <td>{{ notice.user }} </td>
+    <td class="approve">
+      <input type="radio" [name]="notice.id" id="approve" (click)="markForApproval(notice.id)">
+      <br>
+      <input type="radio" [name]="notice.id" id="deny" (click)="markForDenial(notice.id)">
+    </td>
+  </tr>
+</table>
+<button class="save" (click)="saveChanges()">
+Save Changes
+</button>
+
+<div style="margin: 2em">
+  <ul> Approval
+    <li *ngFor="let id of idsForApproval">{{id}}</li>
+  </ul>
+  <ul> Denial
+    <li *ngFor="let id of idsForDenial">{{id}}</li>
+  </ul>
+</div>

@@ -1,0 +1,88 @@
+.list {
+  padding: 2em;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  margin: 1em;
+  border-bottom: 1px dotted black;
+}
+div.form {
+  background-color: var(--navy-1);
+
+  bottom: 1em;
+  right: 33%;
+  padding: 5px;
+  width: 500px;
+
+  margin-left: -250px;
+  right: 50%;
+  left: 50%;
+  visibility: hidden;
+}
+div.form-open {
+  visibility: visible;
+}
+#showNewForm {
+  transition: transform 0.5s;
+  visibility: visible !important;
+}
+button.fab-rotate {
+  transform: rotate(-45deg);
+}
+.fab {
+  position: absolute;
+  right: 0;
+  background-color: var(--navy-1);
+  transform: rotate(0deg);
+}
+.fab.form-open {
+  box-shadow: none !important;
+}
+button[type="submit"] {
+  color: white;
+}
+:host /deep/ .mat-select-value-text,
+input {
+  color: white !important;
+}
+.mat-option {
+  background: var(--navy-1);
+  color: white;
+}
+.mat-option:hover {
+  background: var(--navy-2);
+}
+:host /deep/ .mat-form-field .mat-input-element {
+  color: rgba(255, 255, 255, 0.5);
+}
+:host /deep/ .mat-form-field .mat-form-field-label {
+  color: rgba(255, 255, 255, 0.5);
+}
+:host /deep/ .mat-form-field .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+:host /deep/ .mat-form-field .mat-form-field-ripple {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+:host /deep/ .mat-form-field .mat-form-field-required-marker {
+  color: rgba(255, 255, 255, 0.5);
+}
+:host /deep/ .mat-form-field.mat-focused .mat-form-field-label {
+  color: #fff;
+}
+:host /deep/ .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #fff;
+}
+:host /deep/ .mat-form-field.mat-focused .mat-form-field-required-marker {
+  color: #fff;
+}
+:host /deep/ .mat-form-field.mat-focused .mat-input-element {
+  color: #fff;
+}
+h3 {
+  font-family: "Sorts Mill Goudy";
+  color: var(--red-2);
+  font-size: 20pt;
+}

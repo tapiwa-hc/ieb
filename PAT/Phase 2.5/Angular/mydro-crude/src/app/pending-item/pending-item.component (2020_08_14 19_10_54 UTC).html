@@ -1,0 +1,36 @@
+  <td title="Display Date">{{ notice.display_date }} </td>
+  <td>{{ notice.name }} 
+    <br>
+    {{edits[0]}}
+    <br>
+    {{edits[1]}}
+    
+  </td>
+  <td title="Double-Click to Edit" (dblclick)="allowTitleEdits()">
+    <input type="text" [(ngModel)]="notice.title" [disabled]="!editableTitle" >
+    <div *ngIf="editableTitle">
+      <button (click)="keepTitle()">
+        Keep
+      </button>
+      <button (click)="discardTitle()">
+        Discard
+      </button>
+    </div>
+  </td>
+  <td title="Double-Click to Edit" (dblclick)="allowDescrEdits()">
+    <textarea [(ngModel)]="notice.description" [disabled]="!editableDescr" cols="45" rows="10"></textarea>
+    <div *ngIf="editableDescr">
+      <button (click)="keepDescr()">
+        Keep
+      </button>
+      <button (click)="discardDescr()">
+        Discard
+      </button>
+      </div>
+  </td>
+  <td>{{ notice.user }} </td>
+  <td class="approve">
+    <label [for]="notice.id + 'a'"><input type="radio" [name]="notice.id" [id]="notice.id + 'a'" (click)="markForApproval(notice.id)">Yes</label>
+    <br>
+    <label [for]="notice.id + 'd'"><input type="radio" [name]="notice.id" [id]="notice.id + 'd'" (click)="markForDenial(notice.id)">No</label>
+  </td>

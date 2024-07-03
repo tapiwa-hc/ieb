@@ -1,0 +1,21 @@
+<div class="printout container-fluid bg-white col-sm-12 mx-auto">
+
+  <div > <!--TODO: Separate Component-->
+    <h1>Daily Routine Order</h1>
+    <h2>{{exportModel.date | date:'d MMMM y'}} : {{exportModel.date | date:'EEEE' | uppercase}}</h2>
+    <table *ngFor="let section of dailyNotices">
+      <th colspan="2">{{sectionInfo[section.section - 1].name | uppercase}}</th>
+      <tr *ngFor="let notice of section.notices; let i = index">
+        <td>{{i + 1}}</td>
+        <td><!--span class="notice-title">{{notice.title}}:</span--> <span [innerHTML]="('**' + notice.title + '**: ' + notice.description) | marked"></span></td> 
+        <!-- TODO: save and apply line breaks -->
+      </tr>
+    </table>
+    <!-- TODO: Special formatting for restrictions box -->
+    <!-- TODO: Verify signer? -->
+    <br><br>
+    <strong>AR Laing</strong>
+    <br>
+    DEPUTY RECTOR (Pupils)
+  </div>
+</div>

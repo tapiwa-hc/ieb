@@ -1,0 +1,102 @@
+<div class="sidebar" id="mySidebar" *ngIf="web">
+  <a class="closebtn" (click)="closeSB()">&times;</a>
+  
+  <div [class.d-none]="editableSubs">
+    <h3>Filter</h3> <button (click)="filterFeed()">Apply</button> <button (click)="clearFilters()">Clear</button>
+    <hr>
+    <h2>Date</h2>
+    <div class="indent">  
+
+      <!-- TODO: Mat Date Format -->
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput #dateFrom [matDatepicker]="pickerFrom">
+        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput #dateTill [matDatepicker]="pickerTill">
+        <mat-datepicker-toggle matSuffix [for]="pickerTill"></mat-datepicker-toggle>
+        <mat-datepicker #pickerTill></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+    <h2>My Subscriptions <span (click)="editSubs()">Edit</span></h2>
+    <div class="indent">
+      <!-- TODO: Change to mat checkbox -->
+      <mat-selection-list [(ngModel)]="subsFilter">
+        <mat-list-option *ngFor="let sub of subs" checkboxPosition="before" color="primary" [value]="sub.id">
+          {{sub.name}} 
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+  </div>
+
+  <div *ngIf="editableSubs">
+    <h2>My Subscriptions<span (click)="saveSubs()">Save</span></h2>
+      <div class="indent">
+        <!-- <mat-selection-list #removeSubs>
+          <mat-list-option *ngFor="let sub of subs" checkboxPosition="before" color="primary" [value]="sub.id" selected (click)="markForRemoval(this)">
+            {{sub.name}} 
+          </mat-list-option>
+        </mat-selection-list>
+        <mat-selection-list [(ngModel)]="subsToAdd">
+          <mat-list-option *ngFor="let sub of otherGroups" checkboxPosition="before" color="primary" [value]="sub.id">
+            {{sub.name}} 
+          </mat-list-option>
+        </mat-selection-list> -->
+        <!-- TODO: MAT Checkbox -->
+
+        <ul>
+          <li *ngFor="let sub of subs">
+            <mat-checkbox [checked]="true" (change)="updateUnsub($event, sub.id)">
+              {{sub.name}}
+            </mat-checkbox>
+          </li>
+        </ul>
+        <!-- {{subsToRemove.toString()}} -->
+        <ul>
+          <li *ngFor="let sub of otherGroups">
+            <mat-checkbox (change)="updateSub($event, sub.id)">
+              {{sub.name}}
+            </mat-checkbox>
+          </li>
+        </ul>
+        <!-- {{subsToAdd | json}} -->
+
+      </div>
+  </div>
+   
+  
+</div>
+<!-- <button (click)="openSB()" *ngIf="web"><mat-icon>menu</mat-icon></button> -->
+<div class="container">
+  <div class="col-sm-8 mx-auto py-4 rounded-sm">
+    <div *ngFor="let section of filteredFeed" class="section" app-feed-item [sectionName]="sectionInfo[section.section - 1].name" [notices]="section.notices">
+      <!-- <h4 class="my-2">{{sectionInfo[section.section - 1].name}}</h4> -->
+      <!-- <div>
+        
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let notice of section.notices">
+            <mat-expansion-panel-header collapsedHeight="4em">
+              <mat-panel-title>{{notice.title}}</mat-panel-title>
+              <mat-panel-description>{{notice.display_date | date:'EEEE d MMM'}}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <span [innerHTML]="notice.description | marked"  ></span>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div> -->
+      <!-- <app-feed-item *ngFor="let notice of section.notices" [notice]="notice"></app-feed-item> -->
+        <!-- <div *ngFor="let notice of section.notices" class="card">
+          <h1>{{notice.title}}</h1>
+          <h3>{{notice.display_date | date:'EEEE d MMM'}}</h3>
+          <span [innerHTML]="notice.description | marked"></span>
+          <mat-icon class="expand">expand_more</mat-icon>
+        </div> -->
+    </div>
+  </div>
+</div>
+<hr>
+
+

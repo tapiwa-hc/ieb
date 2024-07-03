@@ -1,0 +1,69 @@
+.container > div {
+  background-color: var(--navy-3-a);
+}
+.mat-drawer-container {
+  background-color: inherit;
+  color: inherit;
+}
+.mat-sidenav-container {
+  height: 100%;
+}
+
+#toggleSB,
+.sidebar {
+  position: fixed;
+  top: var(--nav-ht);
+  z-index: 99;
+}
+mat-sidenav {
+  width: 320px;
+  padding-top: 1em;
+}
+
+#toggleSB mat-icon {
+  color: var(--red-2);
+}
+#toggleSB {
+  font-size: 28pt;
+  border-radius: 0;
+  border-bottom-right-radius: 5px;
+  left: 0;
+}
+.sidebar {
+  height: 100%;
+  width: 320px;
+  position: fixed;
+  left: -320px;
+  background-color: #fff;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+  box-shadow: none;
+}
+div.sidebar {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+mat-sidenav h2:first-child {
+  display: inline;
+  cursor: pointer;
+}
+mat-sidenav .indent {
+  margin-left: 16px;
+}
+mat-sidenav h2 span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.indent mat-selection-list,
+.indent mat-form-field {
+  width: 230px;
+}
+.indent ul {
+  list-style-type: none;
+}
+
+app-feed-item {
+  width: 100%;
+}

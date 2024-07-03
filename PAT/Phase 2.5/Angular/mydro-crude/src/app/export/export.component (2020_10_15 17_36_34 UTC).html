@@ -1,0 +1,87 @@
+<div *ngIf="!ready" class="container">
+  <div class="export-form rounded-sm">
+    <form
+      #exportForm="ngForm"
+      (ngSubmit)="onSubmit()"
+      class="col-sm-12 bg-white p-5"
+    >
+      <div class="w-100 row my-5">
+        <div class="col-sm-4 d-flex flex-column align-items-end">
+          <label for="date">Date:</label>
+          <mat-checkbox
+            [(ngModel)]="exportModel.today"
+            name="today"
+            (click)="today()"
+            labelPosition="end"
+          >
+            Today
+          </mat-checkbox>
+        </div>
+        <mat-form-field
+          class="col-sm-8 w-50"
+          style="width: 50%"
+          appearance="fill"
+        >
+          <input
+            matInput
+            type="date"
+            name="date"
+            [(ngModel)]="exportModel.date"
+            [disabled]="exportModel.today"
+            required
+            appAutofocus
+          />
+        </mat-form-field>
+      </div>
+      <div class="w-100 row my-5">
+        <div class="col-sm-4 d-flex flex-column align-items-end">
+          <label>Sections:</label>
+          <mat-checkbox
+            [(ngModel)]="exportModel.all"
+            name="all"
+            (click)="selectAllSections()"
+            labelPosition="end"
+          >
+            Select All
+          </mat-checkbox>
+        </div>
+        <mat-form-field
+          class="col-sm-8 w-50"
+          style="width: 50%"
+          appearance="fill"
+        >
+          <mat-select
+            [(ngModel)]="exportModel.sections"
+            name="sections"
+            [disabled]="exportModel.all"
+            multiple
+            required
+          >
+            <mat-option
+              *ngFor="let section of sectionInfo"
+              [value]="section.id"
+              >{{ section.name }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="false"> This field is required </mat-error>
+        </mat-form-field>
+      </div>
+      <button
+        class="float-right mb-3"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="exportForm.invalid"
+      >
+        Proceed
+      </button>
+    </form>
+  </div>
+</div>
+
+<app-printout
+  *ngIf="ready"
+  [exportModel]="exportModel"
+  [dailyNotices]="dailyNotices"
+  [sectionInfo]="sectionInfo"
+></app-printout>

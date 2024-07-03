@@ -1,0 +1,11 @@
+user_id,rights,first_name,surname,username,password
+1,1,Glennie,Murrish,gmurri,$2y$04$6A3wqS3XgAlmowlZMA6KPeqV41hnvnTsX75pqPZq4VOBlHNMlivWe
+2,0,Bone,Crocket,NULL,NULL
+3,0,Vivi,Canty,NULL,NULL
+4,2,Reyna,Kidds,rkidds,$2y$04$UKV35By61WXQE/AQQnf9g.12weUKsgIL8..BpNu4iA.oXa0zb4Pf6
+5,1,Paxton,Braidley,pbraid,$2y$04$5uB.gSlymv1tgC3bdp17LuMgLI9BMxC6j6799luL705c5XRYhMZnq
+6,2,Candace,Peacher,cpeach,$2y$04$xMW419GLTG4U/rlaTnOekuWkPmnisPYKx1p19CSqWvnneA1AbUJAe
+7,0,Jenine,Holdron,NULL,NULL
+8,2,Alf,Roddie,aroddi,$2y$04$kYEUbIWwttO0Mz9xLoiDj.z0mL49s/isEvGfYZUzPEFH1/N1ERA0.
+9,0,Silvano,Deegan,NULL,NULL
+10,0,Twyla,Colrein,NULL,NULL

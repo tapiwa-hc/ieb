@@ -1,0 +1,73 @@
+.container > div {
+  background-color: var(--navy-3-a);
+}
+
+#toggleSB,
+.sidebar {
+  position: fixed;
+  top: var(--nav-ht);
+  z-index: 99;
+}
+#toggleSB mat-icon {
+  color: var(--red-2);
+}
+#toggleSB {
+  font-size: 28pt;
+  border-radius: 0;
+  border-bottom-right-radius: 5px;
+}
+.sidebar {
+  height: 100%;
+  width: 320px;
+  position: fixed;
+  left: -320px;
+  background-color: #fff;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+  box-shadow: none;
+}
+div.sidebar {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+
+  font-size: 36px;
+
+  cursor: pointer;
+}
+.sidebar h3 {
+  display: inline;
+}
+.sidebar .indent {
+  margin-left: 16px;
+}
+.sidebar h2 span {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.indent mat-selection-list,
+.indent mat-form-field {
+  width: 230px;
+}
+.indent ul {
+  list-style-type: none;
+}
+
+app-feed-item {
+  width: 100%;
+}

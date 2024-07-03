@@ -1,0 +1,32 @@
+<div class="list">
+  <ng-container *ngFor="let i of groupList">
+    <h3>{{sectionInfo[i.section - 1].name}}</h3>
+    <ul>
+      <li *ngFor="let group of i.groups" app-groups-item [group]="group" (deleted)="removeFromList($event)">
+        <!-- <li *ngFor="let group of i.groups">
+      <app-r-groups-item></app-r-groups-item> -->
+      </li>
+    </ul>
+  </ng-container>
+</div>
+
+<div [class.form-open]="formVisible" [class.form-closed]="!formVisible" class="form">
+  <button *ngIf="!formVisible" id="showNewForm" (click)="toggleFormVisibility()">+</button>
+
+
+
+  <div *ngIf="formVisible">
+    <!-- TODO: Wire up form -->
+    <button id="showNewForm" (click)="toggleFormVisibility()">x</button>
+    <form #newForm="ngForm">
+      <select name="section" ngModel>
+        <option selected>Section</option>
+        <option *ngFor="let section of sectionInfo">{{ section.name }}</option>
+      </select>
+      <input name="name" ngModel>
+      <button type="submit">Save</button>
+    </form>
+    {{newForm.value | json}}
+  </div>
+
+</div>

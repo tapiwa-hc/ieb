@@ -1,0 +1,28 @@
+<td>{{notice.display_date | date:'d MMM'}}</td>
+<td>{{notice.grouping_name}}</td>
+<td title="Double-Click to Edit" (dblclick)="allowTitleEdits()">
+  <textarea cdkTextareaAutosize [(ngModel)]="notice.title" [disabled]="!editableTitle" ></textarea>
+  <div *ngIf="editableTitle">
+    <button mat-raised-button class="keep" (click)="keepTitle()">
+      Keep
+    </button>
+    <button mat-raised-button class="discard" (click)="discardTitle()">
+      Discard
+    </button>
+  </div>
+</td>
+<td title="Double-Click to Edit" (dblclick)="allowDescrEdits()">
+  <textarea cdkTextareaAutosize [(ngModel)]="notice.description" [disabled]="!editableDescr"></textarea>
+  <div *ngIf="editableDescr">
+    <button mat-raised-button class="keep" (click)="keepDescr()">
+      Keep
+    </button>
+    <button mat-raised-button class="discard" (click)="discardDescr()">
+      Discard
+    </button>
+    </div>
+</td>
+<!-- <td>HI</td>
+<td>LO</td>
+<td>OL</td>
+<td>IH</td> -->

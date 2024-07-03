@@ -1,0 +1,42 @@
+<td class="td-date">{{ notice.display_date | date: "d MMM" }}</td>
+<td class="td-group">{{ notice.grouping_name }}</td>
+<td (dblclick)="allowTitleEdits()" class="td-title">
+  <textarea
+    title="Double-Click to Edit"
+    cdkTextareaAutosize
+    [(ngModel)]="notice.title"
+    [disabled]="!editableTitle"
+  ></textarea>
+  <div *ngIf="editableTitle">
+    <button mat-raised-button class="keep" (click)="keepTitle()">Keep</button>
+    <button mat-raised-button class="discard" (click)="discardTitle()">
+      Discard
+    </button>
+  </div>
+</td>
+<td (dblclick)="allowDescrEdits()" class="td-descr">
+  <textarea
+    title="Double-Click to Edit"
+    cdkTextareaAutosize
+    [(ngModel)]="notice.description"
+    [disabled]="!editableDescr"
+  ></textarea>
+  <div *ngIf="editableDescr">
+    <button mat-raised-button class="keep" (click)="keepDescr()">Keep</button>
+    <button mat-raised-button class="discard" (click)="discardDescr()">
+      Discard
+    </button>
+  </div>
+</td>
+<td class="td-user">{{ notice.user }}</td>
+<td class="approve" class="td-approve">
+  <mat-radio-group>
+    <mat-radio-button (click)="markForApproval(notice.id)" value="y"
+      >Yes</mat-radio-button
+    >
+    <br />
+    <mat-radio-button (click)="markForDenial(notice.id)" value="n"
+      >No</mat-radio-button
+    >
+  </mat-radio-group>
+</td>

@@ -1,0 +1,22 @@
+button {
+  float: right;
+  margin-left: 0.5em;
+  border: none;
+  background-color: inherit;
+  transition: box-shadow 0.5s;
+}
+button:hover {
+  border-radius: 0.2em;
+  box-shadow: 0 0 3pt 2pt rgba(0,0,0,0.1);
+}
+input {
+  border: 1px solid black;
+  border-radius: 0.2em;
+  transition: border-color 0.5s;
+}
+input:disabled {
+  color: black;
+  background-color: white;
+  border-color: transparent;
+}
+

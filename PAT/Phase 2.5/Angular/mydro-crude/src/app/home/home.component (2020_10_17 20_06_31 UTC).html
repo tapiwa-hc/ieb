@@ -1,0 +1,47 @@
+<div class="container content card-deck mx-auto text-center">
+  <span class="dropdown card" title="Click for menu" *ngIf="rights >= 3">
+    <div class="card" data-toggle="dropdown">
+      <div class="card-body">Manage</div>
+      <div class="card-footer"><mat-icon>expand_more</mat-icon></div>
+    </div>
+    <div
+      class="dropdown-menu"
+      [class.admin]="rights === 3"
+      [class.staff]="rights === 2"
+      [class.pupil]="rights === 1"
+    >
+      <a class="dropdown-item" routerLink="/pending">Pending Notices</a>
+      <a class="dropdown-item" routerLink="/groups">Notice Groups</a>
+    </div>
+  </span>
+  <span class="dropdown card" title="Click for menu" *ngIf="rights >= 2">
+    <div class="card" data-toggle="dropdown">
+      <div class="card-body">Publish</div>
+      <div class="card-footer"><mat-icon>expand_more</mat-icon></div>
+    </div>
+    <div
+      class="dropdown-menu"
+      [class.admin]="rights === 3"
+      [class.staff]="rights === 2"
+      [class.pupil]="rights === 1"
+    >
+      <a class="dropdown-item" routerLink="/new">New Notice</a>
+      <a class="dropdown-item" routerLink="/export">Export to PDF</a>
+    </div>
+  </span>
+  <span class="dropdown card" title="Click for menu" *ngIf="rights >= 1">
+    <div class="card" data-toggle="dropdown">
+      <div class="card-body">View</div>
+      <div class="card-footer"><mat-icon>expand_more</mat-icon></div>
+    </div>
+    <div
+      class="dropdown-menu"
+      [class.admin]="rights === 3"
+      [class.staff]="rights === 2"
+      [class.pupil]="rights === 1"
+    >
+      <a class="dropdown-item" routerLink="/all">All Notices</a>
+      <a class="dropdown-item" routerLink="/feed">My Feed</a>
+    </div>
+  </span>
+</div>

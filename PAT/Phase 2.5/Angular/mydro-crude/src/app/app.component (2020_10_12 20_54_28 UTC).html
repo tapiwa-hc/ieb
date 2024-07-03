@@ -1,0 +1,12 @@
+<nav class="app-top-bar">
+  <app-top-bar [title]="title"></app-top-bar>
+</nav>
+<nav>
+  <app-top-bar title=""></app-top-bar>
+</nav>
+<div class="my-overlay" *ngIf="showOverlay">
+  <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+</div>
+<main>
+  <router-outlet></router-outlet>
+</main>

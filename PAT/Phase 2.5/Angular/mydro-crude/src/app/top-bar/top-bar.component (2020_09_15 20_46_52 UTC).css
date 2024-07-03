@@ -1,0 +1,18 @@
+div.top-bar {
+  padding: 0px 5px;
+  width: 100%;
+  margin: 0;
+  border-bottom: 5px solid red;
+  position: fixed;
+  top: 0px;
+  background-color: white;
+  z-index: 9999999;
+}
+ul {
+  margin-left: 20px;
+}
+li {
+  display: inline;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}

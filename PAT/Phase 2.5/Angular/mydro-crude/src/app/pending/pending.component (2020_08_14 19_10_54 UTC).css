@@ -1,0 +1,14 @@
+.pending {
+  margin: 1em 5em;
+  list-style-type: none;
+  padding: 0;
+}
+.pending td {
+  padding: 1em;
+  border: 1px solid black;
+}
+.save {
+  position: fixed;
+  bottom: 1px;
+  right: 1px;
+}

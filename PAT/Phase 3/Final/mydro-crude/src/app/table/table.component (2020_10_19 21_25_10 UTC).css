@@ -1,0 +1,33 @@
+.table {
+  background-color: white;
+}
+.save {
+  position: fixed;
+  bottom: 1.5em;
+  right: 2em;
+}
+.save button {
+  background-color: var(--navy-1);
+  color: white;
+}
+thead {
+  background-color: var(--table-head);
+}
+.th-date {
+  width: 8%;
+  max-width: 8%;
+}
+.th-group,
+.th-title {
+  width: 12%;
+  max-width: 12%;
+}
+.th-descr {
+  width: 50%;
+  max-width: 50%;
+}
+.th-user,
+.th-approve {
+  width: 10%;
+  max-width: 10%;
+}

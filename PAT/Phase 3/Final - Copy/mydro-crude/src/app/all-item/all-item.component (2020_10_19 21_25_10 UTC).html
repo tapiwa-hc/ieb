@@ -1,0 +1,56 @@
+<td>{{ notice.display_date | date: "d MMM" }}</td>
+<td>{{ notice.grouping_name }}</td>
+<ng-container *ngIf="editable">
+  <td (dblclick)="allowTitleEdits()">
+    <textarea
+      title="Double-Click to Edit"
+      cdkTextareaAutosize
+      [(ngModel)]="notice.title"
+      [disabled]="!editableTitle"
+      required
+      #title="ngModel"
+      maxlength="100"
+    ></textarea>
+    <div *ngIf="editableTitle">
+      <button
+        mat-raised-button
+        class="keep"
+        (click)="keepTitle()"
+        [disabled]="title.invalid"
+      >
+        {{ rights >= 3 ? "Keep" : "Request" }}
+      </button>
+      <button mat-raised-button class="discard" (click)="discardTitle()">
+        Discard
+      </button>
+    </div>
+  </td>
+  <td (dblclick)="allowDescrEdits()">
+    <textarea
+      title="Double-Click to Edit"
+      cdkTextareaAutosize
+      [(ngModel)]="notice.description"
+      [disabled]="!editableDescr"
+      required
+      #descr="ngModel"
+      maxlength="1000"
+    ></textarea>
+    <div *ngIf="editableDescr">
+      <button
+        mat-raised-button
+        class="keep"
+        (click)="keepDescr()"
+        [disabled]="descr.invalid"
+      >
+        {{ rights >= 3 ? "Keep" : "Request" }}
+      </button>
+      <button mat-raised-button class="discard" (click)="discardDescr()">
+        Discard
+      </button>
+    </div>
+  </td>
+</ng-container>
+<ng-container *ngIf="!editable">
+  <td>{{ notice.title }}</td>
+  <td>{{ notice.description }}</td>
+</ng-container>

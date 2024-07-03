@@ -1,0 +1,56 @@
+<div *ngIf="!ready" class="container">
+  <div class="export-form rounded-sm">
+  <form #exportForm="ngForm" (ngSubmit)="onSubmit()" class="col-sm-12 bg-white p-5">
+    <div class="w-100 d-flex justify-content-around">
+      <div>
+        <label for="date">Date:</label>
+        <br>
+        <mat-checkbox [(ngModel)]="exportModel.today" name="today" (click)="today()">Today</mat-checkbox>
+      </div>
+      <mat-form-field style="width: 50%" appearance="fill">
+        
+        <input matInput type="date" name="date" [(ngModel)]="exportModel.date" [disabled]="exportModel.today" required>
+      </mat-form-field>
+    </div>
+    <div class="w-100 d-flex justify-content-around">
+      <div>
+        <label>Sections:</label>
+        <br>
+        <mat-checkbox [(ngModel)]="exportModel.all" name="all" (click)="selectAllSections()">Select All</mat-checkbox>
+      </div>
+      <mat-form-field style="width: 50%" appearance="fill">
+        <mat-select [(ngModel)]="exportModel.sections" name="sections" [disabled]="exportModel.all" multiple required>
+          <mat-option *ngFor="let section of sectionInfo" [value]="section.id">{{section.name}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="false">
+          This field is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button class="float-right" mat-raised-button color="primary" type="submit" [disabled]="exportForm.invalid">Proceed</button>
+  </form>
+</div>
+  <!-- {{exportForm.value | json}}
+  <br>
+  {{exportModel.sections.toString()}} -->
+</div>
+
+<app-printout *ngIf="ready" [exportModel]="exportModel" [dailyNotices]="dailyNotices"></app-printout>
+<div *ngIf="ready" class="printout container-fluid bg-white"> <!--TODO: Separate Component-->
+  <h1>Daily Routine Order</h1>
+  <h2>{{exportModel.date | date:'d MMMM y : EEEE'}}</h2>
+  <table *ngFor="let section of dailyNotices">
+    <th colspan="2">{{sectionInfo[section.section - 1].name | uppercase}}</th>
+    <tr *ngFor="let notice of section.notices; let i = index">
+      <td>{{i + 1}}</td>
+      <td><!--span class="notice-title">{{notice.title}}:</span--> <span [innerHTML]="('**' + notice.title + '**: ' + notice.description) | marked"></span></td> 
+      <!-- TODO: save and apply line breaks -->
+    </tr>
+  </table>
+  <!-- TODO: Special formatting for restrictions box -->
+  <!-- TODO: Verify signer? -->
+  <br><br>
+  <strong>AR Laing</strong>
+  <br>
+  DEPUTY RECTOR (Pupils)
+</div>
